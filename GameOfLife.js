@@ -19,6 +19,17 @@ class GameOfLife {
     //  [0, 0, 0],
     //  [0, 0, 0],
     // ]
+
+var arr = new Array
+for(var i=0; i<this.height; i++){
+  arr[i]=new Array
+ for(var j=0; j<this.width; j++){
+  arr[i][j]=0
+ }
+}
+console.log(arr)
+return arr
+
   }
 
   /**
@@ -27,6 +38,9 @@ class GameOfLife {
 
   livingNeighbors(row, col) {
     // TODO: Return the count of living neighbors.
+
+
+
   }
 
   /**
@@ -35,6 +49,9 @@ class GameOfLife {
 
   tick() {
     const newBoard = this.makeBoard();
+
+      
+    
     // TODO: Here is where you want to loop through all the cells
     // on the existing board and determine, based on it's neighbors,
     // whether the cell should be dead or alive in the new board
