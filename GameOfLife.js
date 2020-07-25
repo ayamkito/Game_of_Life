@@ -63,55 +63,209 @@ return arr
 //  */
 // // console.log("living neigbors", arr[0][0])
 
-livingNeighbors() {
+livingNeighbors(row,col) {
   var board = this.board
   var height=this.height
   var width=this.width
-  for(var i=0; i<height; i++){
-    for(var j=0; j<width; j++){
-      var count = 0
-      if(!((i-1)<0 ||(i+1)>height-1|| (j-1)<0 &&(j+1)>width-1 )){
-        // console.log(true)
-      if(board[i][j-1]===1){
-        count++
-      }
-      if(board[i][j+1]===1){
-        count++
-      }
-        // count++ 
-      if(board[i-1][j]===1){
-        count++
-      }
-      if(board[i+1][j]===1){
-        count++
-      }
-      if(board[i-1][j]===1){
-        count++
-      }
-      if(board[i-1][j-1]===1){
-        count++
-        // console.log(board[i-1][j-1],"up left")
-      }
-      if(board[i-1][j+1]===1){
-        count++
-        // console.log(board[i-1][j+1],"up right")
-      }
-      if(board[i+1][j-1]===1){
-        count++
-        // console.log(board[i+1][j-1],"down left")
-      }
-  
-      if(board[i+1][j+1]===1){
-        count++
-        // console.log(board[i+1][j+1],"down right")
-      }
-      }
-      // console.log(count)
-      // return count
-    }
-    // console.log("array", board[i])
-  }
+  var i = row
+  var j = col
 
+  var count = 0
+    if(((i-1)<0 ||(i+1)>height-1|| (j-1)<0 &&(j+1)>width-1 )){
+      // console.log(true)
+      if((i-1)<0&&(j-1)<0){
+        // console.log("left upper corner")
+            if(board[i][j+1]===1){
+      count++
+      // console.log(board[i][j+1],"right")
+            }
+            if(board[i+1][j+1]===1){
+      count++
+      // console.log(board[i+1][j+1],"down right")
+            }
+                if(board[i+1][j]===1){
+      count++
+      // console.log(board[i+1][j],"down")
+    }
+
+
+      }
+      if((i-1)<0&&(j+1)>width-1){
+        // console.log("right up corner")
+            if(board[i+1][j]===1){
+      count++
+      // console.log(board[i+1][j],"down")
+    }
+    if(board[i][j-1]===1){
+      count++
+      // console.log(board[i][j-1],"left")
+    }
+    if(board[i+1][j-1]===1){
+      count++
+      // console.log(board[i+1][j-1],"down left")
+    }
+
+      }
+      if((i+1)>height-1&&(j-1)<0){
+        // console.log("left down corner")
+            if(board[i][j+1]===1){
+      count++
+      // console.log(board[i][j+1],"right")
+    }
+      // count++ 
+    if(board[i-1][j]===1){
+      count++
+      // console.log(board[i-1][j],"up")
+    }
+
+    if(board[i-1][j+1]===1){
+      count++
+      // console.log(board[i-1][j+1],"up right")
+    }
+
+      }
+      if((j+1)>width-1&&(i+1)>height-1){
+        // console.log("right down corner")
+            if(board[i-1][j]===1){
+      count++
+      // console.log(board[i-1][j],"up")
+    }
+
+    if(board[i][j-1]===1){
+      count++
+      // console.log(board[i][j-1],"left")
+    }
+    if(board[i-1][j-1]===1){
+      count++
+      // console.log(board[i-1][j-1],"up left")
+    }
+
+
+      }
+
+
+
+
+
+      //only one side is less than 0
+      if((i-1)<0&&(j-1)>=0 && (j+1)<=width-1){
+        // console.log("only up is invalid")
+        if(board[i][j+1]===1){
+      count++
+      // console.log(board[i][j+1],"right")
+    }
+      // count++ 
+
+    if(board[i][j-1]===1){
+      count++
+      // console.log(board[i][j-1],"left")
+    }
+    if(board[i+1][j]===1){
+      count++
+      // console.log(board[i+1][j],"down")
+    }
+    if(board[i+1][j-1]===1){
+      count++
+      // console.log(board[i+1][j-1],"down left")
+    }
+
+    if(board[i+1][j+1]===1){
+      count++
+      // console.log(board[i+1][j+1],"down right")
+    }
+      }
+
+
+
+      if((i+1)>height-1&&(j-1)>=0 && (j+1)<=width-1){
+        // console.log("only down is invalid")
+        if(board[i-1][j]===1){
+      count++
+      // console.log(board[i-1][j],"up")
+    }
+    if(board[i-1][j-1]===1){
+      count++
+      // console.log(board[i-1][j-1],"up left")
+    }
+    if(board[i-1][j+1]===1){
+      count++
+      // console.log(board[i-1][j+1],"up right")
+    }
+    if(board[i][j+1]===1){
+      count++
+      // console.log(board[i][j+1],"right")
+    }
+      // count++ 
+
+    if(board[i][j-1]===1){
+      count++
+      // console.log(board[i][j-1],"left")
+    }
+      }
+      // if((i-1)<0&&(i+1)>height-1 && (j-1)<0){
+      //   console.log("only left is invalid")
+      // }
+      // if((i-1)<0&&(i+1)>height-1&& (j+1)>width-1){
+      //   console.log("only right is invalid")
+      // }
+
+      
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+    else if(!((i-1)<0 ||(i+1)>height-1|| (j-1)<0 &&(j+1)>width-1 )){
+      // console.log("all sides valid")
+    if(board[i-1][j]===1){
+      count++
+      // console.log(board[i-1][j],"up")
+    }
+    if(board[i-1][j-1]===1){
+      count++
+      // console.log(board[i-1][j-1],"up left")
+    }
+    if(board[i-1][j+1]===1){
+      count++
+      // console.log(board[i-1][j+1],"up right")
+    }
+    if(board[i][j+1]===1){
+      count++
+      // console.log(board[i][j+1],"right")
+    }
+      // count++ 
+
+    if(board[i][j-1]===1){
+      count++
+      // console.log(board[i][j-1],"left")
+    }
+    if(board[i+1][j]===1){
+      count++
+      // console.log(board[i+1][j],"down")
+    }
+    if(board[i+1][j-1]===1){
+      count++
+      // console.log(board[i+1][j-1],"down left")
+    }
+
+    if(board[i+1][j+1]===1){
+      count++
+      // console.log(board[i+1][j+1],"down right")
+    }
+
+    }
+    // console.log("this is the count for each cell",count)
+    return count
 }
                                           //
                                          
@@ -136,13 +290,13 @@ livingNeighbors() {
     var board=this.board
     for(var i=0; i<this.height; i++){
       for(var j=0; j<this.width; j++){
-        var neighbors = this.livingNeighbors()
+        var neighbors = this.livingNeighbors(i,j)
         if(board[i][j]===1){
           if(neighbors<2||neighbors>3){
             newBoard[i][j]=0
 
           }
-          else{
+          else if(neighbors===2||neighbors===3){
             newBoard[i][j]=1
           }
         }
@@ -158,7 +312,7 @@ livingNeighbors() {
   }
 }
 
-
+//manual test code
 // cont game = new GameOfLife(3,3);
 // game.board[1][0]=1
 // game.board[1][1]=1
