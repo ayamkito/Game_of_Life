@@ -24,7 +24,7 @@ width = this.width
 var arr = new Array
 for(var i=0; i<height; i++){
   arr[i]=new Array
- for(var j=0; j<this.width; j++){
+ for(var j=0; j<width; j++){
   arr[i][j]=0
  }
 }
@@ -63,51 +63,53 @@ return arr
 //  */
 // // console.log("living neigbors", arr[0][0])
 
-livingNeighbors(row, col) {
-  row = this.height
-  col = this.width
+livingNeighbors() {
   var board = this.board
-  // TODO: Return the count of living neighbors.
-  for(var i=0; i<row; i++){
-    for(var j=0; j<col; j++){
+  var height=this.height
+  var width=this.width
+  for(var i=0; i<height; i++){
+    for(var j=0; j<width; j++){
       var count = 0
-      console.log(board[i][j])
-       //up neighbor = row-1,col
+      if(!((i-1)<0 ||(i+1)>height-1|| (j-1)<0 &&(j+1)>width-1 )){
+        // console.log(true)
       if(board[i][j-1]===1){
-       count++
+        count++
       }
-       // //down neighbor = row+1, col
       if(board[i][j+1]===1){
-       count++
+        count++
       }
-       // //left neighbor =row,col-1
-      if(board[row-1][col]===1){
-       count++
+        // count++ 
+      if(board[i-1][j]===1){
+        count++
       }
-       // //right neighbor
-      if(board[row+1][col]===1){
-         count++
+      if(board[i+1][j]===1){
+        count++
       }
-       //left up
-      if(board[row-1][col-1]===1){
-           count++
-      } 
-       //right up
-      if(board[row+1][col-1]===1){
-       count++
+      if(board[i-1][j]===1){
+        count++
       }
-       //left down
-      if(board[row-1][col+1]===1){
-       count++
+      if(board[i-1][j-1]===1){
+        count++
+        // console.log(board[i-1][j-1],"up left")
       }
-       //right down
-      if(board[row+1][col+1]===1){
-       count++
+      if(board[i-1][j+1]===1){
+        count++
+        // console.log(board[i-1][j+1],"up right")
       }
-       console.log("line 109", count)
-       //console.log( "live neigbors", count)
-       // return count 
+      if(board[i+1][j-1]===1){
+        count++
+        // console.log(board[i+1][j-1],"down left")
+      }
+  
+      if(board[i+1][j+1]===1){
+        count++
+        // console.log(board[i+1][j+1],"down right")
+      }
+      }
+      // console.log(count)
+      // return count
     }
+    // console.log("array", board[i])
   }
 
 }
@@ -134,14 +136,14 @@ livingNeighbors(row, col) {
     var board=this.board
     for(var i=0; i<this.height; i++){
       for(var j=0; j<this.width; j++){
-        var neighbors = this.livingNeighbors(i, j)
+        var neighbors = this.livingNeighbors()
         if(board[i][j]===1){
           if(neighbors<2||neighbors>3){
             newBoard[i][j]=0
 
           }
           else{
-            mewBoard[i][j]=1
+            newBoard[i][j]=1
           }
         }
         if(board[i][j]===0){
